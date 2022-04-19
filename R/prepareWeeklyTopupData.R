@@ -74,7 +74,6 @@ prepareWeeklyTopupData <- function(report_date,d2_session) {
   #Include any Unknown service provider (bad or missing number), inactive users
   # or any zero rated topups.
   dplyr::mutate( status_good =  service_provider != "Unknown" &
-                                   airtime_donor != "Unknown" &
                                    !is_excluded &
                                    amount != 0) %>%
   dplyr::mutate(submitted_by_proxy = facility_username != submitted_by)
@@ -85,7 +84,6 @@ prepareWeeklyTopupData <- function(report_date,d2_session) {
   d$bad_records <- d$bad_records %>%
     dplyr::mutate(error_condition = dplyr::case_when(is_excluded == TRUE  ~ "User has been excluded",
                                                      service_provider == "Unknown" ~ "Unknown service provider/Bad number",
-                                                     airtime_donor == "Unknown" ~ "Unknown airtime donor",
                                                      amount == 0 ~ "Report in the future"))
 
   d$topup_summary <- d$topup_data  %>%
