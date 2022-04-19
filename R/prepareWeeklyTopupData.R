@@ -92,6 +92,7 @@ prepareWeeklyTopupData <- function(report_date,d2_session) {
     dplyr::summarise(amount = sum(amount)) %>%
     dplyr::mutate(VoucherType = "Direct-Topup") %>%
     dplyr::select(ServiceProvider = service_provider,
+                  VoucherType,
                   Recipient = phoneNumber,
                   Amount = amount,
                   airtime_donor)
