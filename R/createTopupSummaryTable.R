@@ -32,7 +32,8 @@ createTopupSummaryTables <- function(d) {
                                              align = rep("r",length(topup_summary_table[,1]))) %>%
   kableExtra::kable_styling(bootstrap_options = "bordered", full_width = FALSE)
 
-  d$topup_summary_table_md <- knitr::kable(topup_summary_table, "markdown")
+  d$topup_summary_table_md <- knitr::kable(topup_summary_table, "markdown",
+                                           align = rep("r",length(topup_summary_table[,1])))
 
   d
 
