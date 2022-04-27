@@ -20,13 +20,16 @@ createTopupSummaryTables <- function(d) {
                                 Amount = sum(.$Amount),
                                 USD = sum(.$USD),
                                 stringsAsFactors = FALSE)) %>%
-    dplyr::rename("Donor" = airtime_donor) %>%
-    dplyr::mutate(USD = sprintf("$%.2f",USD))
+    dplyr::mutate(USD = sprintf("$%.2f",USD)) %>%
+    dplyr::rename("Donor" = airtime_donor,
+                  "Amount (ZMW)" = Amount,
+                  "Amount (USD)" = USD)
 
 
   d$topup_summary_table <- topup_summary_table
 
-  d$topup_summary_table_html <- knitr::kable(topup_summary_table,"html") %>%
+  d$topup_summary_table_html <- knitr::kable(topup_summary_table,"html",
+                                             align = rep("r",length(topup_summary_table[,1]))) %>%
   kableExtra::kable_styling(bootstrap_options = "bordered", full_width = FALSE)
 
   d$topup_summary_table_md <- knitr::kable(topup_summary_table, "markdown")
