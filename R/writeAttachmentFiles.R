@@ -15,10 +15,31 @@ writeAttachmentFiles <- function(d) {
   bad_records_attachment <- paste0(working_dir,"/bad_records_",format(as.Date(d$report_date),"%Y%m%d"),".xlsx")
   openxlsx::write.xlsx(d$bad_records,bad_records_attachment)
   attachments <-append(attachments,bad_records_attachment)
+
   #Supply the raw data
   topup_data_attachment <- paste0(working_dir,"/topup_data_",format(as.Date(report_date),"%Y%m%d"),".xlsx")
   openxlsx::write.xlsx(d$topup_data,topup_data_attachment)
   attachments <-append(attachments,topup_data_attachment)
+
+  #Create a list of users with bad phone numbers
+
+  d$users_bad_phonenumbers <-d$topup_users %>%
+    dplyr::filter(service_provider == 'Unknown' &
+                    !is_excluded) %>%
+    dplyr::left_join(d$orgunit_structure) %>%
+    dplyr::select(province,district,facility,health_post,
+      facility_username,
+                  phoneNumber,
+                  last_login = userCredentials.lastLogin,
+                  disabled = userCredentials.disabled) %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(last_login = strptime(last_login, "%Y-%m-%dT%H:%M:%S")) %>%
+    dplyr::arrange(dplyr::desc(last_login))
+
+    topup_data_attachment <- paste0(working_dir,"/users_bad_phonenumbers_",format(as.Date(report_date),"%Y%m%d"),".xlsx")
+    openxlsx::write.xlsx(d$users_bad_phonenumbers,topup_data_attachment)
+    attachments <-append(attachments,topup_data_attachment)
+
 
   d$attachments <- attachments
 
@@ -29,7 +50,9 @@ writeAttachmentFiles <- function(d) {
       files = unlist(d$attachments),
       flags = '-r9XjD')
 
+  #Return the list of attachments and zip file
   d$zip_file_name <- zip_file_name
+
 
   d
 }
