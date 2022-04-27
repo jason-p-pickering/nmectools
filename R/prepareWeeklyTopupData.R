@@ -55,6 +55,9 @@ prepareWeeklyTopupData <- function(report_date,d2_session) {
   d<-createReportInfo()
   d$report_date <- report_date
 
+  #Organisationunit structure
+  d$orgunit_structure <- getOrgUnitStructure(d2_session)
+
   d$topup_users <- getRapidReportUsers(d2_session) %>%
     dplyr::select(-name) %>%
     dplyr::rename(facility_username = userCredentials.username)

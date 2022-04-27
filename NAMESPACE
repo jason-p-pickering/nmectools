@@ -2,6 +2,7 @@
 
 export(createReportInfo)
 export(createTopupSummaryTables)
+export(getOrgUnitStructure)
 export(getRapidReportUsers)
 export(getTopupOrgunitGroups)
 export(getWeeklyRawData)
