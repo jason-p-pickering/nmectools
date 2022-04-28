@@ -28,10 +28,16 @@ createTopupSummaryTables <- function(d) {
 
   d$topup_summary_table <- topup_summary_table
 
-  d$topup_summary_table_html <- knitr::kable(topup_summary_table,"html",
-                                             align = rep("r",length(topup_summary_table[,1]))) %>%
-  kableExtra::kable_styling(bootstrap_options = "bordered", full_width = FALSE)
+  d$topup_summary_table_html <- tableHTML::tableHTML(topup_summary_table)
 
+  #Export the image as a PNG
+  table_image <- paste0(tempfile(),".png")
+  d$topup_summary_table_html_png <- table_image
+  Sys.setenv(OPENSSL_CONF="/etc/ssl phantomjs --version")
+  tableHTML::tableHTML_to_image(tableHTML::tableHTML(d$topup_summary_table),
+                                file = table_image,type = "png")
+
+  #Create a markdown version of the table
   d$topup_summary_table_md <- knitr::kable(topup_summary_table, "markdown",
                                            align = rep("r",length(topup_summary_table[,1])))
 
