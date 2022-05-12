@@ -1,3 +1,11 @@
+#' Title
+#'
+#' @param d
+#'
+#' @return
+#' @export
+#'
+
 writeAttachmentFiles <- function(d) {
   donors<-unique(d$topup_summary$airtime_donor)
   working_dir<-tempdir()

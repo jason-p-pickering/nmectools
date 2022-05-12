@@ -16,13 +16,6 @@
       "Repository": "CRAN",
       "Hash": "470851b6d5d0ac559e9d01bb352b4021"
     },
-    "RColorBrewer": {
-      "Package": "RColorBrewer",
-      "Version": "1.1-3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "45f0398006e83a5b10b72a90663d8d8c"
-    },
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.7",
@@ -107,13 +100,6 @@
       "Repository": "CRAN",
       "Hash": "ebaa97ac99cc2daf04e77eecc7b781d7"
     },
-    "colorspace": {
-      "Package": "colorspace",
-      "Version": "2.0-3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "bb4341986bc8b914f0f0acf2e4a3f2f7"
-    },
     "commonmark": {
       "Package": "commonmark",
       "Version": "1.8.0",
@@ -195,13 +181,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "d447b40982c576a72b779f0a3b3da227"
-    },
-    "farver": {
-      "Package": "farver",
-      "Version": "2.1.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "c98eb5133d9cb9e1622b8691487f11bb"
     },
     "fastmap": {
       "Package": "fastmap",
@@ -308,13 +287,6 @@
       "Repository": "CRAN",
       "Hash": "98138e0994d41508c7a6b84a0600cfcb"
     },
-    "kableExtra": {
-      "Package": "kableExtra",
-      "Version": "1.3.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "49b625e6aabe4c5f091f5850aba8ff78"
-    },
     "keyring": {
       "Package": "keyring",
       "Version": "1.3.0",
@@ -328,13 +300,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "0bc1b5da1b0eb07cd4b727e95e9ff0b8"
-    },
-    "labeling": {
-      "Package": "labeling",
-      "Version": "0.4.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "3d5108641f47470611a32d0bdf357a72"
     },
     "later": {
       "Package": "later",
@@ -396,13 +361,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "8974a907200fc9948d636fe7d85ca9fb"
-    },
-    "munsell": {
-      "Package": "munsell",
-      "Version": "0.5.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "6dfe8bf774944bd5595785e3229d8771"
     },
     "openssl": {
       "Package": "openssl",
@@ -516,13 +474,6 @@
       "Repository": "CRAN",
       "Hash": "290c8ea0700d2e7258082d0025386e68"
     },
-    "rmarkdown": {
-      "Package": "rmarkdown",
-      "Version": "2.13",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ac78f4d2e0289d4cba73b88af567b8b1"
-    },
     "rstudioapi": {
       "Package": "rstudioapi",
       "Version": "0.13",
@@ -530,33 +481,12 @@
       "Repository": "CRAN",
       "Hash": "06c85365a03fdaf699966cc1d3cf53ea"
     },
-    "rvest": {
-      "Package": "rvest",
-      "Version": "1.0.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "bb099886deffecd6f9b298b7d4492943"
-    },
     "sass": {
       "Package": "sass",
       "Version": "0.4.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "f37c0028d720bab3c513fd65d28c7234"
-    },
-    "scales": {
-      "Package": "scales",
-      "Version": "1.2.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "6e8750cdd13477aa440d453da93d5cac"
-    },
-    "selectr": {
-      "Package": "selectr",
-      "Version": "0.4-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "3838071b66e0c566d55cc26bd6e27bf4"
     },
     "sendmailR": {
       "Package": "sendmailR",
@@ -600,26 +530,12 @@
       "Repository": "CRAN",
       "Hash": "0759e6b6c0957edb1311028a49a35e76"
     },
-    "svglite": {
-      "Package": "svglite",
-      "Version": "2.1.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "68dfdf211af6aa4e5f050f064f64d401"
-    },
     "sys": {
       "Package": "sys",
       "Version": "3.4",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "b227d13e29222b4574486cfcbde077fa"
-    },
-    "systemfonts": {
-      "Package": "systemfonts",
-      "Version": "1.0.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "90b28393209827327de889f49935140a"
     },
     "tableHTML": {
       "Package": "tableHTML",
@@ -656,13 +572,6 @@
       "Repository": "CRAN",
       "Hash": "17f6da8cfd7002760a859915ce7eef8f"
     },
-    "tinytex": {
-      "Package": "tinytex",
-      "Version": "0.38",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "759d047596ac173433985deddf313450"
-    },
     "tzdb": {
       "Package": "tzdb",
       "Version": "0.3.0",
@@ -683,13 +592,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ecf749a1b39ea72bd9b51b76292261f1"
-    },
-    "viridisLite": {
-      "Package": "viridisLite",
-      "Version": "0.4.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "55e157e2aa88161bdb0754218470d204"
     },
     "vroom": {
       "Package": "vroom",
@@ -718,13 +620,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "e83f48136b041845e50a6658feffb197"
-    },
-    "xml2": {
-      "Package": "xml2",
-      "Version": "1.3.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d4d71a75dd3ea9eb5fa28cc21f9585e2"
     },
     "xtable": {
       "Package": "xtable",
