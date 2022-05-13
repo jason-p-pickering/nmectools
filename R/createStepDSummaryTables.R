@@ -11,7 +11,7 @@ createStepDSummaryTables <- function(d) {
 
   d$facility_summary_table <- d$facility_report %>%
     dplyr::group_by(airtime_donor) %>%
-    dplyr::summarise(Amount = sum(amount)) %>%
+    dplyr::summarise(Amount = sum(Amount)) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(USD = lucr::currency_convert(Amount,from="ZMW",to="USD",key=
                                                  d$info$lucr_api_key)) %>%
@@ -42,7 +42,7 @@ createStepDSummaryTables <- function(d) {
 
   d$data_chw_summary_table <- d$data_chw_report %>%
     dplyr::group_by(airtime_donor) %>%
-    dplyr::summarise(Amount = sum(amount)) %>%
+    dplyr::summarise(Amount = sum(Amount)) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(USD = lucr::currency_convert(Amount,from="ZMW",to="USD",key=
                                                  d$info$lucr_api_key)) %>%

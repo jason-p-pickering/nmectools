@@ -34,14 +34,14 @@ prepareStepDTopupReport <- function(report_date,d2_session) {
     dplyr::group_by(contact_phone_operator,
                     airtime_donor,
                     contact_phone) %>%
-    dplyr::summarise(Amount = sum(amount), .groups = "drop") %>%
-    dplyr::arrange(desc(Amount)) %>%
-    dplyr::mutate(direct_topup = "Direct-Topup") %>%
-    dplyr::select( airtime_donor,
-      service_provider = contact_phone_operator,
-                   direct_topup,
-                  phone_number = contact_phone,
-                  Amount)
+    dplyr::summarise(amount = sum(amount), .groups = "drop") %>%
+    dplyr::arrange(desc(amount)) %>%
+    dplyr::mutate(VoucherType = "Direct-Topup") %>%
+    dplyr::select(ServiceProvider = contact_phone_operator,
+                  VoucherType,
+                  Recipient = contact_phone,
+                  Amount = amount,
+                  airtime_donor)
 
   d$facility_bad_numbers <- d$raw_data %>%
     dplyr::filter(bad_facility_number) %>%
@@ -53,13 +53,13 @@ prepareStepDTopupReport <- function(report_date,d2_session) {
     dplyr::filter(qualifies & data_chw_phone_operator != "Unknown") %>%
     dplyr::select(airtime_donor,data_chw_phone, data_chw_phone_operator) %>%
     dplyr::group_by(airtime_donor,data_chw_phone, data_chw_phone_operator) %>%
-    dplyr::summarise(Amount = dplyr::n() * 4, .groups = "drop") %>%
-    dplyr::mutate(direct_topup = "Direct-Topup") %>%
-    dplyr::select(airtime_donor,
-      service_provider = data_chw_phone_operator,
-                  direct_topup,
-                  phone_number = data_chw_phone,
-                  Amount)
+    dplyr::summarise(amount = dplyr::n() * 4, .groups = "drop") %>%
+    dplyr::mutate(VoucherType = "Direct-Topup") %>%
+    dplyr::select(ServiceProvider = data_chw_phone_operator,
+                  VoucherType,
+                  Recipient = data_chw_phone,
+                  Amount = amount,
+                  airtime_donor)
 
   d$data_chw_bad_numbers <- d$raw_data %>%
     dplyr::filter(bad_chw_number) %>%
