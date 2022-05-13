@@ -9,7 +9,7 @@
 prepareStepDTopupReport <- function(report_date,d2_session) {
 
   d <- list()
-  d <- createReportInfo()
+  d <- createReportInfo(report_date)
   d$raw_data <- getStepDTopUpData(report_date,d2_session)
 
   #Get the raw data
