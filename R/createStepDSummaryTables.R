@@ -28,7 +28,7 @@ createStepDSummaryTables <- function(d) {
 
 
   d$facility_summary_table_html <- tableHTML::tableHTML(d$facility_summary_table
-                                                        ,caption = "Facility Summary")
+                                                        ,caption = "CHW Summary")
 
   #Export the image as a PNG
   table_image <- paste0(tempfile(),".png")

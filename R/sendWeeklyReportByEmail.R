@@ -44,7 +44,7 @@ sendStepDReportByEmail<-function(d,d2_session) {
 
   #Format the mail
   from<-"noreply@dhis.co.zm"
-  subject<-paste("Step D (Monthly) Report for ", as.Date(d$report_date)- lubridate::days(7) , "-",d$report_date)
+  subject<-paste("Step D Monthly Report for ", d$report_date)
 
   msg <- sendmailR::mime_part(paste('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -54,7 +54,8 @@ Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Topup Summary</title>
 </head>
-<body>',d$facilty_summary_html, "<p/>", d$data_chw_summary_html,
+<body>',as.character(d$facility_summary_table_html), "</>",
+                    as.character(d$data_chw_summary_table_html),
                                     '</body>
 </html>'))
 

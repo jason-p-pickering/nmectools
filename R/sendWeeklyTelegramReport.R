@@ -47,6 +47,8 @@ sendStepDTelegramReport <- function(d) {
                    d$data_chw_summary_table %>% dplyr::filter(Donor == "Total") %>% dplyr::pull(3),
                    "USD)")
   bot$send_message(d$info$telegram_chat_id,message,parse_mode = "Markdown")
+  bot$sendPhoto(d$info$telegram_chat_id, d$facility_summary_table_html_png)
+  bot$sendPhoto(d$info$telegram_chat_id, d$data_chw_summary_table_html_png)
   bot$sendDocument(d$info$telegram_chat_id,
                    document = d$zip_file_name)
   }
