@@ -29,9 +29,6 @@ loginToDHIS2(
 
 \item{d2_session_envir}{Environment of the session}
 }
-\value{
-
-}
 \description{
 Essentially a re-export
 of loginToDATIM from the datimutils package

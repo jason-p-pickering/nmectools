@@ -9,9 +9,6 @@ sendStepDTelegramReport(d)
 \arguments{
 \item{d}{}
 }
-\value{
-
-}
 \description{
 Title
 }

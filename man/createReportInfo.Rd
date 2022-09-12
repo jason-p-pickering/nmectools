@@ -4,10 +4,7 @@
 \alias{createReportInfo}
 \title{Title}
 \usage{
-createReportInfo()
-}
-\value{
-
+createReportInfo(report_date)
 }
 \description{
 Title

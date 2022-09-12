@@ -1,4 +1,7 @@
 #' Title
+#' @import dplyr
+#' @import magrittr
+#' @import stringr
 #'
 #' @param df
 #' @param phone_var Name of the variable which contains the phone number

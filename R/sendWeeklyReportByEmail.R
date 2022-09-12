@@ -1,5 +1,6 @@
 #' Title
-#'
+#' @import lubridate
+#' @import sendmailR
 #' @param d Data object
 #' @param d2_session datimutils session
 #'

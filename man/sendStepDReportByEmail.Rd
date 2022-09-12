@@ -9,9 +9,6 @@ sendStepDReportByEmail(d, d2_session)
 \arguments{
 \item{d2_session}{}
 }
-\value{
-
-}
 \description{
 Title
 }

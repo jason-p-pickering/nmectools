@@ -38,7 +38,7 @@ getWeeklyTopupData <- function(report_date,d2_session) {
 
 
 #' Title
-#'
+#' @import assertthat
 #' @param report_date
 #' @param d2_session
 #'

@@ -11,9 +11,6 @@ createTopupSummaryTables(d)
 
 \item{lucr_api_key}{Lucr API key to convert currencies}
 }
-\value{
-
-}
 \description{
 Title
 }

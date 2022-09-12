@@ -1,5 +1,6 @@
 #' Title
-#'
+#' @import tidyr
+#' @import datimutils
 #' @param d2_session
 #'
 #' @return
@@ -43,7 +44,8 @@ getTrainedByGroup <- function(d2_session = dynGet("d2_default_session",
   }
 
 #' Title
-#'
+#' @import httr
+#' @import readr
 #' @param d2_session
 #'
 #' @return

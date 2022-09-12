@@ -11,9 +11,6 @@ sendWeeklyReportByEmail(d, d2_session)
 
 \item{d2_session}{datimutils session}
 }
-\value{
-
-}
 \description{
 Title
 }

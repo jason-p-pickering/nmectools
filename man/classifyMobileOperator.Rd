@@ -11,9 +11,6 @@ classifyMobileOperator(df, phone_var, output_var)
 
 \item{output_var}{Name of the output variable which should describe the donor}
 }
-\value{
-
-}
 \description{
 Title
 }

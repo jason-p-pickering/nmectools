@@ -12,9 +12,6 @@ getReportRecipients(
 \arguments{
 \item{d2_session}{}
 }
-\value{
-
-}
 \description{
 Title
 }

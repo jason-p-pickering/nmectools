@@ -1,5 +1,6 @@
 #' Title
-#'
+#' @import tableHTML
+#' @import lucr
 #' @param d Consolidate data object
 #' @param lucr_api_key Lucr API key to convert currencies
 #'
