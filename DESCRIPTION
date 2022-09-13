@@ -1,6 +1,6 @@
 Package: nmectools
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Reporting Scripts for NMEC DHIS2
 Version: 0.1.0
 Author: Jason P. Pickering <jason.p.pickering@gmail.com>
 Maintainer: Jason P. Pickering <jason.p.pickering@gmail.com>
@@ -11,7 +11,7 @@ License: BSD_3_clause
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 4.1)
-Imports: 
+Imports:
   assertthat (>= 0.2.1),
   datimutils (>= 0.5.3),
   dplyr (>= 1.0.10),
@@ -30,6 +30,8 @@ Imports:
   purrr (>= 0.3.4),
   knitr (>= 1.40),
   jsonlite(>= 1.8.0)
+Suggests:
+  lintr (>= 3.0.0)
 Remotes: github::ironholds/lucr,
   github::pepfar-datim/datimutils
 RoxygenNote: 7.2.1
