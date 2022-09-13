@@ -530,6 +530,13 @@
       "Repository": "CRAN",
       "Hash": "f4b45dfe0da38504d061685108dceb15"
     },
+    "shiny": {
+      "Package": "shiny",
+      "Version": "1.7.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4f7970a3edb0a153ac6b376785a1944a"
+    },
     "sodium": {
       "Package": "sodium",
       "Version": "1.2.1",
