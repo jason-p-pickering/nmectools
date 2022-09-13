@@ -52,8 +52,8 @@ topup_data
 
 prepareWeeklyTopupData <- function(report_date, d2_session) {
 
-  d <- createReportInfo()
-  d$report_date <- report_date
+  d <- createReportInfo(report_date)
+
 
   #Organisationunit structure
   d$orgunit_structure <- getOrgUnitStructure(d2_session)
