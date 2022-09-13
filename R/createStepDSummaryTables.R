@@ -60,28 +60,33 @@ createStepDSummaryTables <- function(d) {
     dplyr::group_by(airtime_donor) %>%
     dplyr::summarise(Amount = sum(Amount)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(USD = lucr::currency_convert(Amount,from="ZMW",to="USD",key=
-                                                 d$info$lucr_api_key)) %>%
+    dplyr::mutate(USD = lucr::currency_convert(Amount,
+                                               from = "ZMW",
+                                               to = "USD",
+                                               key = d$info$lucr_api_key)) %>%
     dplyr::mutate(airtime_donor = as.character(airtime_donor)) %>%
     dplyr::bind_rows(data.frame(airtime_donor = "Total",
                                 Amount = sum(.$Amount),
                                 USD = sum(.$USD),
                                 stringsAsFactors = FALSE)) %>%
-    dplyr::mutate(USD = format(round(USD,2),big.mark = ",",nsmall=2),
-                  Amount = format(Amount,big.mark = ",", nsmall=0)) %>%
+    dplyr::mutate(USD = format(round(USD, 2), big.mark = ",", nsmall = 2),
+                  Amount = format(Amount, big.mark = ",", nsmall = 0)) %>%
     dplyr::rename("Donor" = airtime_donor,
                   "Amount (ZMW)" = Amount,
                   "Amount (USD)" = USD)
 
 
-  d$data_chw_summary_table_html <- tableHTML::tableHTML(d$data_chw_summary_table, caption = paste0("Data CHW Summary",d$report_date,")"))
+
+  d$data_chw_summary_table_html <-
+    tableHTML::tableHTML(d$data_chw_summary_table,
+                         caption = paste0("Data CHW Summary", d$report_date, ")"))
 
   #Export the image as a PNG
-  table_image <- paste0(tempfile(),".png")
+  table_image <- paste0(tempfile(), ".png")
   d$data_chw_summary_table_html_png <- table_image
-  Sys.setenv(OPENSSL_CONF="/etc/ssl phantomjs --version")
+  Sys.setenv(OPENSSL_CONF = "/etc/ssl phantomjs --version")
   tableHTML::tableHTML_to_image(tableHTML::tableHTML(d$data_chw_summary_table),
-                                file = table_image,type = "png")
+                                file = table_image, type = "png")
 
 
   d

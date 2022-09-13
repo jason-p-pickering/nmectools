@@ -18,4 +18,3 @@ sendWeeklyTelegramReport <- function(d) {
   )
 
 }
-

@@ -15,4 +15,3 @@ getOrgUnitStructure <- function(d2_session)  {
     readr::read_csv(file = ., show_col_types = FALSE)
 
 }
-

@@ -63,7 +63,7 @@ getTopupOrgunitGroups <-
     #We will use the old way, until the duplicative orgunit group members
     #problem is solved
 
-    url <- paste0(d2_session$base_url,"api/sqlViews/ff28isLPBSk/data.csv")
+    url <- paste0(d2_session$base_url, "api/sqlViews/ff28isLPBSk/data.csv")
 
     url %>%
       httr::GET(httr::timeout(180),

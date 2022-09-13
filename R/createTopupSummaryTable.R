@@ -13,14 +13,16 @@ createTopupSummaryTables <- function(d) {
     dplyr::group_by(airtime_donor) %>%
     dplyr::summarise(Amount = sum(Amount)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(USD = lucr::currency_convert(Amount,from="ZMW",to="USD",key=
-                                                 d$info$lucr_api_key)) %>%
+    dplyr::mutate(USD = lucr::currency_convert(Amount,
+                                               from = "ZMW",
+                                               to = "USD",
+                                               key = d$info$lucr_api_key)) %>%
     dplyr::mutate(airtime_donor = as.character(airtime_donor)) %>%
     dplyr::bind_rows(data.frame(airtime_donor = "Total",
                                 Amount = sum(.$Amount),
                                 USD = sum(.$USD),
                                 stringsAsFactors = FALSE)) %>%
-    dplyr::mutate(USD = sprintf("$%.2f",USD)) %>%
+    dplyr::mutate(USD = sprintf("$%.2f", USD)) %>%
     dplyr::rename("Donor" = airtime_donor,
                   "Amount (ZMW)" = Amount,
                   "Amount (USD)" = USD)
@@ -31,20 +33,17 @@ createTopupSummaryTables <- function(d) {
   d$topup_summary_table_html <- tableHTML::tableHTML(topup_summary_table)
 
   #Export the image as a PNG
-  table_image <- paste0(tempfile(),".png")
+  table_image <- paste0(tempfile(), ".png")
   d$topup_summary_table_html_png <- table_image
-  Sys.setenv(OPENSSL_CONF="/etc/ssl phantomjs --version")
+  Sys.setenv(OPENSSL_CONF = "/etc/ssl phantomjs --version")
   tableHTML::tableHTML_to_image(tableHTML::tableHTML(d$topup_summary_table),
-                                file = table_image,type = "png")
+                                file = table_image, type = "png")
 
   #Create a markdown version of the table
-  d$topup_summary_table_md <- knitr::kable(topup_summary_table, "markdown",
-                                           align = rep("r",length(topup_summary_table[,1])))
+  d$topup_summary_table_md <-
+    knitr::kable(topup_summary_table, "markdown",
+                 align = rep("r", length(topup_summary_table[, 1])))
 
   d
 
 }
-
-
-
-

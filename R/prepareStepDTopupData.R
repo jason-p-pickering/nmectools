@@ -6,11 +6,11 @@
 #' @return
 #' @export
 #'
-prepareStepDTopupReport <- function(report_date,d2_session) {
+prepareStepDTopupReport <- function(report_date, d2_session) {
 
   d <- list()
   d <- createReportInfo(report_date)
-  d$raw_data <- getStepDTopUpData(report_date,d2_session)
+  d$raw_data <- getStepDTopUpData(report_date, d2_session)
 
   #Get the raw data
 
@@ -45,14 +45,14 @@ prepareStepDTopupReport <- function(report_date,d2_session) {
 
   d$facility_bad_numbers <- d$raw_data %>%
     dplyr::filter(bad_facility_number) %>%
-    dplyr::select(district,orgunit_name,contact_phone) %>%
+    dplyr::select(district, orgunit_name, contact_phone) %>%
     dplyr::distinct() %>%
-    dplyr::arrange(district,orgunit_name)
+    dplyr::arrange(district, orgunit_name)
 
   d$data_chw_report <- d$raw_data %>%
     dplyr::filter(qualifies & data_chw_phone_operator != "Unknown") %>%
-    dplyr::select(airtime_donor,data_chw_phone, data_chw_phone_operator) %>%
-    dplyr::group_by(airtime_donor,data_chw_phone, data_chw_phone_operator) %>%
+    dplyr::select(airtime_donor, data_chw_phone, data_chw_phone_operator) %>%
+    dplyr::group_by(airtime_donor, data_chw_phone, data_chw_phone_operator) %>%
     dplyr::summarise(amount = dplyr::n() * 4, .groups = "drop") %>%
     dplyr::mutate(VoucherType = "Direct-Topup") %>%
     dplyr::select(ServiceProvider = data_chw_phone_operator,
@@ -63,7 +63,7 @@ prepareStepDTopupReport <- function(report_date,d2_session) {
 
   d$data_chw_bad_numbers <- d$raw_data %>%
     dplyr::filter(bad_chw_number) %>%
-    dplyr::select(district,orgunit_name,data_chw_name,
+    dplyr::select(district, orgunit_name, data_chw_name,
                   data_chw_phone, storedby) %>%
     dplyr::distinct()
 
