@@ -11,9 +11,6 @@ getWeeklyRawData(report_date, d2_session)
 
 \item{d2_session}{d2_session object}
 }
-\value{
-
-}
 \description{
 Title
 }

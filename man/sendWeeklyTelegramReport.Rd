@@ -9,9 +9,6 @@ sendWeeklyTelegramReport(d)
 \arguments{
 \item{d}{Data object}
 }
-\value{
-
-}
 \description{
 Title
 }

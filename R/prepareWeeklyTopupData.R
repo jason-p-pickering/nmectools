@@ -8,7 +8,7 @@
 #'
 
 
-getWeeklyRawData <- function(report_date,d2_session) {
+getWeeklyRawData <- function(report_date, d2_session) {
   url <-
     paste0(
       d2_session$base_url,
@@ -24,7 +24,7 @@ topup_data <-  url %>%
   dplyr::rename(orgunit_uid = uid,
                 orgunit_name = name,
                 submitted_by = username) %>%
-  dplyr::group_by(orgunit_uid,orgunit_name,iso,startdate,submitted_by) %>%
+  dplyr::group_by(orgunit_uid, orgunit_name, iso, startdate, submitted_by) %>%
   #Take the last submission if there have been several
   dplyr::mutate(is_last_submission = submission_date == max(submission_date)) %>%
   dplyr::filter(is_last_submission) %>%
@@ -34,7 +34,7 @@ topup_data <-  url %>%
   dplyr::mutate(amount = dplyr::case_when(period_age < 8 ~ 0,
                                           period_age >= 8 & period_age < 15 ~ 5,
                                           period_age >= 15 & period_age < 22 ~ 3,
-                                          period_age >=22 & period_age < 29 ~ 2,
+                                          period_age >= 22 & period_age < 29 ~ 2,
                                           period_age >= 29 ~ 1))
 
 topup_data
@@ -50,10 +50,10 @@ topup_data
 #'
 
 
-prepareWeeklyTopupData <- function(report_date,d2_session) {
+prepareWeeklyTopupData <- function(report_date, d2_session) {
 
-  d<-createReportInfo()
-  d$report_date <- report_date
+  d <- createReportInfo(report_date)
+
 
   #Organisationunit structure
   d$orgunit_structure <- getOrgUnitStructure(d2_session)
@@ -62,21 +62,21 @@ prepareWeeklyTopupData <- function(report_date,d2_session) {
     dplyr::select(-name) %>%
     dplyr::rename(facility_username = userCredentials.username)
 
-  topup_data <- getWeeklyRawData(report_date,d2_session)
+  topup_data <- getWeeklyRawData(report_date, d2_session)
   n_raw <- NROW(topup_data)
 
   d$airtime_donor <- getTopupOrgunitGroups(d2_session) %>%
-    dplyr::select(orgunit_uid ,airtime_donor) %>%
+    dplyr::select(orgunit_uid, airtime_donor) %>%
     dplyr::distinct()
 
   #Join by the orgunit
-  topup_data <- dplyr::left_join(topup_data,d$topup_users, by = "orgunit_uid") %>%
+  topup_data <- dplyr::left_join(topup_data, d$topup_users, by = "orgunit_uid") %>%
     dplyr::left_join(d$airtime_donor, by = "orgunit_uid") %>%
     dplyr::mutate(airtime_donor = dplyr::case_when(is.na(airtime_donor) ~ "Unknown",
                                                    TRUE ~ airtime_donor)) %>%
   #Include any Unknown service provider (bad or missing number), inactive users
   # or any zero rated topups.
-  dplyr::mutate( status_good =  service_provider != "Unknown" &
+  dplyr::mutate(status_good =  service_provider != "Unknown" &
                                    !is_excluded &
                                    amount != 0) %>%
   dplyr::mutate(submitted_by_proxy = facility_username != submitted_by)
@@ -85,12 +85,13 @@ prepareWeeklyTopupData <- function(report_date,d2_session) {
   d$topup_data <- topup_data %>% dplyr::filter(status_good)
   d$bad_records <- topup_data %>% dplyr::filter(!status_good)
   d$bad_records <- d$bad_records %>%
-    dplyr::mutate(error_condition = dplyr::case_when(is_excluded == TRUE  ~ "User has been excluded",
-                                                     service_provider == "Unknown" ~ "Unknown service provider/Bad number",
-                                                     amount == 0 ~ "Report in the future"))
+    dplyr::mutate(error_condition =
+    dplyr::case_when(is_excluded == TRUE  ~ "User has been excluded",
+                    service_provider == "Unknown" ~ "Unknown service provider/Bad number",
+                    amount == 0 ~ "Report in the future"))
 
   d$topup_summary <- d$topup_data  %>%
-    dplyr::group_by(phoneNumber, service_provider,airtime_donor) %>%
+    dplyr::group_by(phoneNumber, service_provider, airtime_donor) %>%
     #Remove duplicates if any
     dplyr::summarise(amount = sum(amount)) %>%
     dplyr::mutate(VoucherType = "Direct-Topup") %>%
