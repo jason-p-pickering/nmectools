@@ -20,13 +20,16 @@ setwd("/var/lib/dhis2/dhis/scripts/nmectools")
 source("renv/activate.R")
 source(".Rprofile")
 
+setwd("./exec")
+
 require(nmectools)
+
 loginToDHIS2("/var/lib/dhis2/dhis/dish.json")
 #Start to calculate the topup report
 cmd_args<-commandArgs();
 #TODO make this more robust
 report_date<-as.Date(cmd_args[6])
-if (is.na(report_date)) { reportExDate<-Sys.Date()}
+if (is.na(report_date)) { report_date <- Sys.Date()}
 d <- prepareWeeklyTopupData(report_date, d2_session = d2_default_session)
-sendWeeklyReportByEmail(d)
+sendWeeklyReportByEmail(d, d2_session = d2_default_session)
 sendWeeklyTelegramReport(d)

@@ -15,7 +15,7 @@ loginToDHIS2("/var/lib/dhis2/dhis/dish.json")
 cmd_args<-commandArgs();
 #TODO make this more robust
 report_date<-as.Date(cmd_args[6])
-if (is.na(report_date)) { reportExDate<-Sys.Date()}
+if (is.na(report_date)) { report_date <- Sys.Date()}
 
 d <- prepareStepDTopupReport(report_date, d2_session = d2_default_session)
 d <- createStepDSummaryTables(d)
@@ -23,4 +23,4 @@ d <- prepareStepDAttacments(d)
 
 
 sendStepDTelegramReport(d)
-sendStepDReportByEmail(d)
+sendStepDReportByEmail(d, d2_session = d2_default_session)

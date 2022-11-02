@@ -11,12 +11,10 @@
 #'
 
 getReportRecipients <- function(usergroup_uid, d2_session = dynGet("d2_default_session",
-                                               inherits = TRUE)) {
-  user_emails <- datimutils::getUserGroups(usergroup_uid,
-                                           fields = "users[email]") %>%
-    dplyr::pull(email)
+                                                                     inherits = TRUE)) {
+    datimutils::getUserGroups(usergroup_uid, fields = "users[email]", d2_session = d2_session) %>%
+      dplyr::filter(grepl("^[[:alnum:]._-]+@[[:alnum:].-]+$", email)) %>%
+      dplyr::distinct() %>%
+      dplyr::pull(email)
 
-  is_valid_email <- grepl("^[[:alnum:]._-]+@[[:alnum:].-]+$", user_emails)
-
-  user_emails[is_valid_email]
 }

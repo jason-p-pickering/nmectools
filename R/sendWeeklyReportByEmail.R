@@ -28,7 +28,7 @@ d$topup_summary_table_html,
 # nolint stop
 
   msg[["headers"]][["Content-Type"]] <- "text/html"
-  to <- getReportRecipients(d2_session)
+  to <- getReportRecipients(usergroup_uid = "WiQAkLe2M2q", d2_session)
   body <- list(body_text = msg, sendmailR::mime_part(d$zip_file_name))
   sendmailR::sendmail(from, to, subject, body)
 }
