@@ -9,14 +9,15 @@
 
 createTopupSummaryTables <- function(d) {
 
+
+
+  ex_rate <- getUSDExchangeRate(d$info$lucr_api_key)
+
   topup_summary_table <- d$topup_summary %>%
     dplyr::group_by(airtime_donor) %>%
     dplyr::summarise(Amount = sum(Amount)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(USD = lucr::currency_convert(Amount,
-                                               from = "ZMW",
-                                               to = "USD",
-                                               key = d$info$lucr_api_key)) %>%
+    dplyr::mutate(USD =  Amount * ex_rate) %>%
     dplyr::mutate(airtime_donor = as.character(airtime_donor)) %>%
     dplyr::bind_rows(data.frame(airtime_donor = "Total",
                                 Amount = sum(.$Amount),
