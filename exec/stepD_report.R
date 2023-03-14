@@ -1,5 +1,5 @@
 
-.libPaths("/var/lib/dhis2/dhis/scripts/nmectools/renv/library/R-4.1/x86_64-pc-linux-gnu")
+.libPaths("/var/lib/dhis2/dhis/scripts/nmectools/renv/library/R-4.2/x86_64-pc-linux-gnu")
 setwd("/var/lib/dhis2/dhis/scripts/nmectools")
 
 source("renv/activate.R")

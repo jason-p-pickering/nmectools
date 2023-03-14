@@ -18,9 +18,7 @@ getRapidReportUsers <- function(d2_session = dynGet("d2_default_session",
 
    #Get all users of the _DATASET_Mobile user group
 
-  users <- datimutils:::api_get(paste0("api/userGroups/D0WkbASa55p?",
-  "fields=users[phoneNumber,organisationUnits[id,name],",
-  "userCredentials[lastLogin,username,disabled]"), d2_session = d2_session) %>%
+  users <- datimutils:::api_get(paste0("users?fields=phoneNumber,organisationUnits[id,name],userCredentials[lastLogin,username,disabled]&filter=userGroups.id:in:[D0WkbASa55p]"), d2_session = d2_session) %>%
     purrr::pluck("users") %>%
     tidyr::unnest("organisationUnits") %>%
     dplyr::mutate(phoneNumber = gsub("[[:space:]]", "", phoneNumber)) %>%

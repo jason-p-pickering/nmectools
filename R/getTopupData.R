@@ -60,23 +60,31 @@ getStepDTopUpData <- function(report_date, d2_session) {
    #Get airtime donors
    orgunit_groups <- getTopupOrgunitGroups(d2_session)
 
- raw_data <- paste0(
+  url  <- paste0(
     d2_session$base_url,
     "api/sqlViews/ZvPV5OXLp3x/data.csv?var=reportExDate:",
     format(report_date, format = "%Y-%m-%d")
-  ) %>%
-    httr::GET(httr::timeout(600),
-              handle = d2_session$handle) %>%
-    httr::content(., "text") %>%
-    readr::read_csv(file = ., col_types = readr::cols(.default = "c"))  %>%
-    dplyr::mutate(orgunit_uid = uid,
-                  startdate = as.Date(startdate),
-                  enddate = as.Date(enddate),
-                  submission_date = as.Date(submission_date),
-                  first_date = as.Date(first_date),
-                  report_age = as.numeric(report_age),
-                  period_age = as.numeric(period_age)) %>%
-    dplyr::filter(record_count > 0)
+  )
+  response <- httr::GET(url, httr::timeout(600),
+              handle = d2_session$handle)
+
+    if (response$status_code == 200L) {
+      raw_data <-
+        response %>%
+        httr::content(., "text") %>%
+        readr::read_csv(file = ., col_types = readr::cols(.default = "c"))  %>%
+        dplyr::mutate(orgunit_uid = uid,
+                      startdate = as.Date(startdate),
+                      enddate = as.Date(enddate),
+                      submission_date = as.Date(submission_date),
+                      first_date = as.Date(first_date),
+                      report_age = as.numeric(report_age),
+                      period_age = as.numeric(period_age)) %>%
+        dplyr::filter(record_count > 0)
+    } else {
+      stop("Could not retreive StepD raw data from the server!")
+    }
+
 
  start_rows <- NROW(raw_data)
 
